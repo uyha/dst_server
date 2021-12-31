@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+dst() (
+  cd "$HOME/steam/steamapps/common/DST/bin/"
+  "./dontstarve_dedicated_server_nullrenderer"  "$@"
+)
+
+start-master(){
+  dst -cluster "$(cat /etc/dst/cluster)" -shard Master
+}
+
+start-caves(){
+  dst -cluster "$(cat /etc/dst/cluster)" -shard Caves
+}
+
+if [[ $# -lt 1 ]]; then
+  echo "Expecting a target to start the server with, either 'master' or 'caves'"
+fi
+
+"start-$1"
+
