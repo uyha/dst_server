@@ -1,0 +1,10 @@
+[Unit]
+Description=Starting the dedicated caves server for DST
+
+[Service]
+Type=simple
+ExecStart=/usr/libexec/dst/start caves
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
