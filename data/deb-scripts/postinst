@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "MyDediServer" > /etc/dst/cluster
+
 systemctl enable dst-master.service
 systemctl enable dst-caves.service
 
