@@ -3,11 +3,19 @@
 set -euo pipefail
 
 dpkg --add-architecture i386
-apt update
+apt update && apt upgrade -y
 apt install -y curl lib32gcc1 lib32stdc++6 libcurl4-gnutls-dev:i386
 
 (
 [[ -d ~/steam ]] || mkdir ~/steam
 cd ~ || exit
 curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar -xzf - -C steam
+
+cat >/usr/local/bin/steamcmd << 'EOF'
+#!/usr/bin/env bash
+/root/steam/steamcmd.sh "$@"
+EOF
+chmod +x /usr/local/bin/steamcmd
 )
+
+steamcmd +runscript ~/dst/download
