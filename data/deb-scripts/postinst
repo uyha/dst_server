@@ -1,0 +1,7 @@
+#!/bin/sh
+
+systemctl enable dst-master.service
+systemctl enable dst-caves.service
+
+systemctl start dst-master.service
+systemctl start dst-caves.service
