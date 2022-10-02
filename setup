@@ -2,23 +2,8 @@
 
 set -euo pipefail
 
-install_steam() (
-  [[ -d "$HOME/steam" ]] || mkdir "$HOME/steam"
-  cd || exit
-  curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar -xzf - -C steam
-
-  cd steam
-  ln -sf steamcmd.sh steamcmd
-)
-
-install_dst_server() {
-  "$HOME/steam/steamcmd" \
-    +force_install_dir ~/steam/steamapps/common/DST \
-    +login anonymous \
-    +app_update 343050 validate \
-    +quit
-}
-
-install_steam
-install_dst_server
-
+steamcmd \
+  +force_install_dir ~/steam/steamapps/common/dst_dedicated_server \
+  +login "${1:-anonymous}" \
+  +app_update 343050 validate \
+  +quit
