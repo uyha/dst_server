@@ -3,7 +3,7 @@
 set -euo pipefail
 
 steamcmd \
-  +force_install_dir ~/steam/steamapps/common/dst_dedicated_server \
+  +force_install_dir "$HOME/steam/steamapps/common/dst_dedicated_server" \
   +login "${1:-anonymous}" \
   +app_update 343050 validate \
   +quit
